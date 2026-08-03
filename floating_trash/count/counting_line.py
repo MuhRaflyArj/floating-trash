@@ -25,10 +25,15 @@ class CountingLine:
         current: Tuple[float, float],
     ) -> bool:
         """Test whether a trajectory segment changes side at this line."""
-        line_y = self.start[1]
+        prev_x, prev_y = previous
+        curr_x, curr_y = current
 
-        within_width = max(previous[0], current[0]) >= self.start[0] and min(previous[0], current[0]) <= self.end[0]
-        changes_side = (previous[1] - line_y) * (current[1] - line_y) <= 0.0
-        moved = previous != current
+        line_y = self.start[1]
+        line_start_x = self.start[0]
+        line_end_x = self.end[0]
+
+        within_width = max(prev_x, curr_x) >= line_start_x and min(prev_x, curr_x) <= line_end_x
+        changes_side = (prev_y - line_y) * (curr_y - line_y) <= 0.0
+        moved = (prev_x, prev_y) != (curr_x, curr_y)
 
         return within_width and changes_side and moved
