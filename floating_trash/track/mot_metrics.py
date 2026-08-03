@@ -62,7 +62,7 @@ class MotMetricEvaluator(BaseMetric[TrackingSequence, TrackingMetrics]):
 
             result, _ = evaluator.evaluate(datasets, metrics)
 
-            return self._extract(result)
+            return self._extract_metrics(result)
 
     def _write_layout(
         self,
@@ -118,7 +118,7 @@ class MotMetricEvaluator(BaseMetric[TrackingSequence, TrackingMetrics]):
 
         path.write_text("\n".join(rows), encoding="utf-8")
 
-    def _extract(self, result: Dict[str, Any]) -> TrackingMetrics:
+    def _extract_metrics(self, result: Dict[str, Any]) -> TrackingMetrics:
         """Extract the three thesis tracking diagnostics."""
         bucket = result["MotChallenge2DBox"]["tracker"]["COMBINED_SEQ"]["pedestrian"]
 
