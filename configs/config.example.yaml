@@ -1,0 +1,45 @@
+train:
+  model: yolo11s-lca.yaml
+  data: data/dataset.yaml
+  epochs: 3
+  image_size: 640
+  batch_size: 16
+  learning_rate: 0.0005
+  optimizer: Adam
+  device: "0"
+  run_name: train_scene_1
+
+evaluate:
+  weights: runs/train/train_scene_1/weights/best.pt
+  data: data/dataset.yaml
+  split: test
+  coco_eval: false
+  image_size: 640
+  device: "0"
+  run_name: evaluate_scene_1
+
+track:
+  weights: runs/train/train_scene_1/weights/best.pt
+  source: data/tracking/images
+  ground_truth: data/tracking/track_labels
+  tracker: botsort
+  detector_confidence: 0.40
+  track_threshold: 0.20
+  match_threshold: 0.95
+  device: "0"
+  fps: 30
+  run_name: track_scene_1
+
+count:
+  weights: runs/train/train_scene_1/weights/best.pt
+  source: data/tracking/images
+  ground_truth: data/tracking/track_labels
+  tracker: botsort
+  detector_confidence: 0.40
+  track_threshold: 0.20
+  match_threshold: 0.95
+  line_positions: [0.25, 0.75]
+  device: "0"
+  fps: 30
+  run_name: count_scene_1
+
