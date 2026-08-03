@@ -1,6 +1,6 @@
-# Floating Trash Research Refactor
+# Floating Trash Research
 
-This directory presents the main software ideas from the floating-trash thesis as a small object-oriented pipeline. It connects YOLO11-LCA training, detector evaluation, online multi-object tracking, MOT metrics, and multi-line counting without the experiment-management code used by the full project.
+This directory presents the codebase for YOLO11-LCA training, detector evaluation, online multi-object tracking, MOT metrics, and multi-line counting.
 
 ## Structure
 
