@@ -32,10 +32,11 @@ class FrameReader:
 
     def read(self) -> FrameBatch:
         """Read the supported source into an ordered batch."""
-        if self.source.is_dir():
+        if self.source.is_dir() or self.source.suffix in FrameReader.image_suffixes:
             return self._read_images()
 
-        return self._read_video()
+        elif self.source.suffix in FrameReader.video_suffixes:
+            return self._read_video()
 
     def _read_images(self) -> FrameBatch:
         """Read a filename-sorted image directory."""
